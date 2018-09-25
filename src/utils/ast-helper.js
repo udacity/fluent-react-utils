@@ -1,15 +1,7 @@
-import {getProp, elementType as _elementType, hasProp} from 'jsx-ast-utils';
-import {
-  AST_NODE_TYPES,
-  FLUENT_ATTRS,
-  STANDARD_ELEMENT_TYPES
-} from './constants';
-import {defaultShorthandName} from './defaults';
-import {
-  formatRule,
-  pullLocalizedDOMAttributes,
-  formatMessage
-} from './format-helper';
+import { getProp, elementType as _elementType, hasProp } from 'jsx-ast-utils';
+import { AST_NODE_TYPES, FLUENT_ATTRS, STANDARD_ELEMENT_TYPES } from './constants';
+import { defaultShorthandName } from './defaults';
+import { formatRule, pullLocalizedDOMAttributes, formatMessage } from './format-helper';
 
 const {
   JSXElement,
@@ -19,7 +11,7 @@ const {
   StringLiteral
 } = AST_NODE_TYPES;
 
-const {attrs, l10nId} = FLUENT_ATTRS;
+const { attrs, l10nId } = FLUENT_ATTRS;
 
 export function isShorthand(elementType, shorthandName = defaultShorthandName) {
   const re = new RegExp(`${shorthandName}\\.[A-Z]`);
@@ -32,7 +24,7 @@ export function getLocalizationKey(localizedNode = {}, identifier = 'id') {
   if (localizationKey) {
     return localizationKey;
   }
-  const {expression} = prop.value;
+  const { expression } = prop.value;
   const variableName = expression.name;
   if (variableName) {
     console.log(`l10nId assigned a variable name "${variableName}". This message
@@ -45,16 +37,15 @@ export function getLocalizationKey(localizedNode = {}, identifier = 'id') {
     console.log(`l10nId assigned a return value for the function "${functionName}".
     This message cannot be automatically extracted. Please ensure that all possible
     values of this function and its messages are added to the ftl file.`);
-    return;
   }
 }
 
 export function findChildNode(localizedNode = {}) {
-  return localizedNode.children.find((child) => child.type === JSXElement);
+  return localizedNode.children.find(child => child.type === JSXElement);
 }
 
 export function getExpressionNodes(children = []) {
-  return children.filter((child) => child.type === JSXExpressionContainer);
+  return children.filter(child => child.type === JSXExpressionContainer);
 }
 
 export function isNonEmptyText(node) {
@@ -67,29 +58,25 @@ export function getLiteralNodes(children = []) {
 
 export function getComments(node = {}) {
   const expressionNodes = getExpressionNodes(node.children);
-  const commentNodes = expressionNodes.filter(
-    (n) => n.expression.type === JSXEmptyExpression
-  );
-  return commentNodes.map((n) => n.expression.innerComments[0].value.trim());
+  const commentNodes = expressionNodes.filter(n => n.expression.type === JSXEmptyExpression);
+  return commentNodes.map(n => n.expression.innerComments[0].value.trim());
 }
 
 export function getMessages(node) {
   const literalNodes = getLiteralNodes(node.children);
   if (literalNodes.length) {
-    return literalNodes.map((literalNode) => literalNode.value);
+    return literalNodes.map(literalNode => literalNode.value);
   }
   const expressionNodes = getExpressionNodes(node.children);
-  const stringNodes = expressionNodes.filter(
-    (n) => n.expression.type === StringLiteral
-  );
-  return stringNodes.map((stringNode) => stringNode.expression.value);
+  const stringNodes = expressionNodes.filter(n => n.expression.type === StringLiteral);
+  return stringNodes.map(stringNode => stringNode.expression.value);
 }
 
 export function getAttributesList(node) {
   const attributes = getProp(node.openingElement.attributes, attrs);
   const l10nAttrs = attributes.value.expression.properties;
   if (l10nAttrs) {
-    return l10nAttrs.map((attr) => attr.key.name);
+    return l10nAttrs.map(attr => attr.key.name);
   }
   return [];
 }
@@ -101,20 +88,14 @@ export function getAllowedAttrs(elementType, customElements = {}) {
   const elementAttrs = elements[elemName];
   if (elementAttrs) {
     const attributeNames = Object.keys(elementAttrs);
-    return attributeNames.map((name) => (elementAttrs[name] ? name : ''));
+    return attributeNames.map(name => (elementAttrs[name] ? name : ''));
   }
-  console.log(
-    `No allowed attributes configured for element type "${elemName}"`
-  );
+  console.log(`No allowed attributes configured for element type "${elemName}"`);
   console.log('Add this element to "customElements" in the .l10nrc file.');
   return [];
 }
 
-export function findShorthandTranslatableMessages(
-  node,
-  localizationKey,
-  customElements
-) {
+export function findShorthandTranslatableMessages(node, localizationKey, customElements) {
   const componentType = _elementType(node.openingElement);
   const l10nAttrsList = getAllowedAttrs(componentType, customElements);
   const attributes = pullLocalizedDOMAttributes(node, l10nAttrsList);
@@ -150,7 +131,7 @@ export function findTranslatableMessages(node, localizationKey) {
 
 export function getShorthandMessages(node, customElements) {
   const localizationKey = getLocalizationKey(node, l10nId);
-  const {message, comment, attributes} = findShorthandTranslatableMessages(
+  const { message, comment, attributes } = findShorthandTranslatableMessages(
     node,
     localizationKey,
     customElements
@@ -165,10 +146,7 @@ export function getShorthandMessages(node, customElements) {
 
 export function getLocalizedMessages(node) {
   const localizationKey = getLocalizationKey(node);
-  const {message, comment, attributes} = findTranslatableMessages(
-    node,
-    localizationKey
-  );
+  const { message, comment, attributes } = findTranslatableMessages(node, localizationKey);
   return formatRule({
     localizationKey,
     comment,
@@ -177,7 +155,7 @@ export function getLocalizedMessages(node) {
   });
 }
 
-export function compileFtlMessages(node, {shorthandName, customElements}) {
+export function compileFtlMessages(node, { shorthandName, customElements }) {
   const elementType = _elementType(node.openingElement);
   if (isShorthand(elementType, shorthandName)) {
     return getShorthandMessages(node, customElements);

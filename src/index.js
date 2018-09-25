@@ -1,12 +1,3 @@
-import { log } from './utils/ast-helper';
+import { Loc, makeLocalizedElement, augmentLoc } from './components';
 
-const defaultAwesomeFunction = (name) => {
-  const returnStr = `I am the Default Awesome Function, fellow comrade! - ${name}`;
-  return returnStr;
-};
-
-const awesomeFunction = () => 'I am just an Awesome Function';
-
-export default defaultAwesomeFunction;
-
-export { awesomeFunction, log };
+export default { Loc, makeLocalizedElement, augmentLoc };

@@ -1,4 +1,4 @@
-import {makeLocalizedElement} from './make-localized-element';
+import { makeLocalizedElement } from './make-localized-element';
 
 export const Loc = {
   A: makeLocalizedElement('a'),
@@ -10,7 +10,7 @@ export const Loc = {
   H4: makeLocalizedElement('h4'),
   H5: makeLocalizedElement('h5'),
   H6: makeLocalizedElement('h6'),
-  Img: makeLocalizedElement('img', {alt: true}),
+  Img: makeLocalizedElement('img', { alt: true }),
   Label: makeLocalizedElement('label'),
   Span: makeLocalizedElement('span'),
   Td: makeLocalizedElement('td'),

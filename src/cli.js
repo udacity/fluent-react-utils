@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import {readFile, writeFileSync} from 'fs';
-import {sync} from 'mkdirp';
-import {argv} from 'yargs';
+import { readFile, writeFileSync } from 'fs';
+import { sync } from 'mkdirp';
+import { argv } from 'yargs';
 import {
   clean,
   defaultOutputDir,
