@@ -10,6 +10,8 @@ format: componentName: {attribute: true}
 
 `shorthandName` - by default, this is 'Loc'
 
+`filePattern` = './src/app/**/*.{js,jsx}';
+`outputDir` = './public/locales/new-strings/';
 
 #### future work:
 message deduplication
