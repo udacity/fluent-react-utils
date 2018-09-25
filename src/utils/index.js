@@ -3,3 +3,4 @@ export * from './constants';
 export * from './defaults';
 export * from './extraction';
 export * from './format-helper';
+export * from './pseudolocalize';

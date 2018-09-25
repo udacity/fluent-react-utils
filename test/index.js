@@ -1,7 +1,9 @@
 import { assert } from 'chai';
+import { pseudolocalize } from '../lib';
 
-describe('Awesome test.', () => {
-  it('should test a thing', () => {
-    assert(true, 'woops');
+describe('pseudolocalize', () => {
+  it('should transform a message', () => {
+    const expectedOutput = 'Ƥẏŧħǿǿƞ';
+    assert(pseudolocalize('Python') === expectedOutput, 'woops');
   });
 });
