@@ -1,15 +1,17 @@
 {
   "env": {
     "development": {
-      "presets": ["env"],
+      "presets": ["env", "react", "es2015"],
       "plugins": [
-        "add-module-exports"
+        "add-module-exports",
+        "transform-object-rest-spread"
       ]
     },
     "production": {
-      "presets": ["env", "minify"],
+      "presets": ["env", "react", "es2015", "minify"],
       "plugins": [
-        "add-module-exports"
+        "add-module-exports",
+        "transform-object-rest-spread"
       ]
     }
   }
