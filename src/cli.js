@@ -1,10 +1,14 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const mkdirp = require('mkdirp');
-const { argv } = require('yargs');
-const { clean } = require('./utils/ast-helper');
-const { getSourceStrings } = require('./utils/extraction');
-const { defaultOutputDir, defaultFilePattern, defaultShorthandName } = require('./utils/defaults');
+import { readFile, writeFileSync } from 'fs';
+import { sync } from 'mkdirp';
+import { argv } from 'yargs';
+import {
+  clean,
+  defaultOutputDir,
+  defaultFilePattern,
+  defaultShorthandName,
+  getSourceStrings
+} from './utils';
 
 const command = argv._[0];
 
@@ -18,7 +22,7 @@ Usage:
 
 switch (command) {
   case 'extract': {
-    fs.readFile(`${process.cwd()}/.l10nrc`, 'utf8', (err, data) => {
+    readFile(`${process.cwd()}/.l10nrc`, 'utf8', (err, data) => {
       if (err) throw new Error(err);
       const rcFile = JSON.parse(data);
 
@@ -36,8 +40,8 @@ switch (command) {
       const sourceStrings = getSourceStrings({ filePattern, shorthandName, customElements });
       const cleanedStrings = clean(sourceStrings);
 
-      mkdirp.sync(outputDir);
-      fs.writeFileSync(`${outputDir}data.ftl`, cleanedStrings);
+      sync(outputDir);
+      writeFileSync(`${outputDir}data.ftl`, cleanedStrings);
     });
     break;
   }

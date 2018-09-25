@@ -1,8 +1,8 @@
-const fs = require('fs');
-const glob = require('glob');
-const walk = require('babylon-walk');
-const { parse } = require('@babel/parser');
-const { compileFtlMessages } = require('./ast-helper');
+import fs from 'fs';
+import glob from 'glob';
+import { simple } from 'babylon-walk';
+import { parse } from '@babel/parser';
+import { compileFtlMessages } from './ast-helper';
 
 export function parseForFtl(code, opts) {
   let ftlRules = '';
@@ -16,7 +16,7 @@ export function parseForFtl(code, opts) {
       'exportDefaultFrom'
     ]
   });
-  walk.simple(ast, {
+  simple(ast, {
     JSXElement: (node) => {
       ftlRules += compileFtlMessages(node, opts);
     }

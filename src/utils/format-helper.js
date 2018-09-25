@@ -1,14 +1,32 @@
 import { parse, serialize, FluentSerializer } from 'fluent-syntax';
 
+export function getAttributeName(attribute = {}) {
+  if (attribute.name) {
+    return attribute.name.name;
+  }
+}
+
+export function getAttributeValue(attribute = {}) {
+  if (attribute.value) {
+    return attribute.value.value;
+  }
+}
+
+function getEntryName(entry = {}) {
+  if (entry.id) {
+    return entry.id.name;
+  }
+}
+
 export function pullLocalizedDOMAttributes(node, l10nAttrsList) {
   if (!l10nAttrsList || l10nAttrsList.length === 0) {
     return '';
   }
   const { attributes } = node.openingElement;
-  const l10nAttributes = attributes.filter(att => l10nAttrsList.includes(att.name.name));
+  const l10nAttributes = attributes.filter(att => l10nAttrsList.includes(getAttributeName(att)));
   return l10nAttributes.reduce((ftlRules, attribute) => {
-    const propName = attribute.name.name;
-    const message = attribute.value.value;
+    const propName = getAttributeName(attribute);
+    const message = getAttributeValue(attribute);
     return `${ftlRules}
     .${propName} = ${message}`;
   }, '');
@@ -29,9 +47,9 @@ export function formatMessage({
     return { message: error };
   }
   return {
-    message: message.trim,
-    comment: comment.trim,
-    attributes: attributes.trim
+    message: message.trim(),
+    comment: comment.trim(),
+    attributes: attributes.trim()
   };
 }
 
@@ -47,7 +65,7 @@ export function dedupe(resource) {
   const serializer = new FluentSerializer();
   const entryList = resource.body;
   const hash = entryList.reduce((obj, entry) => {
-    const localizationKey = entry.id.name;
+    const localizationKey = getEntryName(entry);
     let list = [entry];
     if (obj[localizationKey]) {
       list = [...obj[localizationKey], entry];
@@ -56,7 +74,10 @@ export function dedupe(resource) {
     return Object.assign(obj, { [localizationKey]: list });
   }, {});
 
-  const deduped = hash.map((list, localizationKey) => {
+  const l10nKeys = Object.keys(hash);
+
+  const deduped = l10nKeys.map((localizationKey) => {
+    const list = hash[localizationKey];
     if (list.length !== 1) {
       const values = new Set(list.map(serializer.serializeEntry));
       if (values.size > 1) {

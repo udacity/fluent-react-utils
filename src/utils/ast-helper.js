@@ -47,7 +47,7 @@ export function getComments(node = {}) {
 
 export function getMessages(node) {
   const literalNodes = getLiteralNodes(node.children);
-  if (!literalNodes.length) {
+  if (literalNodes.length) {
     return literalNodes.map(literalNode => literalNode.value);
   }
   const expressionNodes = getExpressionNodes(node.children);
@@ -58,14 +58,24 @@ export function getMessages(node) {
 export function getAttributesList(node) {
   const attributes = getProp(node.openingElement.attributes, attrs);
   const l10nAttrs = attributes.value.expression.properties;
-  return l10nAttrs.map(attr => attr.key.name);
+  if (l10nAttrs) {
+    return l10nAttrs.map(attr => attr.key.name);
+  }
+  return [];
 }
 
 export function getAllowedAttrs(elementType, customElements = {}) {
   let elemName = elementType.split('.')[1];
   elemName = elemName.toLowerCase();
   const elements = Object.assign({}, STANDARD_ELEMENT_TYPES, customElements);
-  return elements[elemName].map((isAllowed, name) => (isAllowed ? name : ''));
+  const elementAttrs = elements[elemName];
+  if (elementAttrs) {
+    const attributeNames = Object.keys(elementAttrs);
+    return attributeNames.map(name => (elementAttrs[name] ? name : ''));
+  }
+  console.log(`No allowed attributes configured for element type "${elemName}"`);
+  console.log('Add this element to "customElements" in the .l10nrc file.');
+  return [];
 }
 
 export function findShorthandTranslatableMessages(node, localizationKey, customElements) {

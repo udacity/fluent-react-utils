@@ -5,7 +5,7 @@
 string extraction
 
 ### l10nrc file
-`CUSTOM_ELEMENT_ATTRS` 
+`customElements` 
 format: componentName: {attribute: true}
 
 `shorthandName` - by default, this is 'Loc'
