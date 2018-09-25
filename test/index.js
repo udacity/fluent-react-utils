@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { pseudolocalize } from '../lib';
+import { pseudolocalize } from '../src';
 
 describe('pseudolocalize', () => {
   it('should transform a message', () => {

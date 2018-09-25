@@ -8,7 +8,7 @@ import {
   defaultFilePattern,
   defaultShorthandName,
   getSourceStrings
-} from './utils';
+} from './extraction';
 
 const command = argv._[0];
 

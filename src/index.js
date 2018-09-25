@@ -1,5 +1,4 @@
-import { Loc, makeLocalizedElement, augmentLoc } from './components';
-import { pseudolocalize } from './utils';
+import { Loc, makeLocalizedElement, augmentLoc, pseudolocalize } from './components';
 
 export default {
   Loc, makeLocalizedElement, augmentLoc, pseudolocalize
