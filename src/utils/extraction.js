@@ -1,8 +1,8 @@
 import fs from 'fs';
 import glob from 'glob';
-import { simple } from 'babylon-walk';
-import { parse } from '@babel/parser';
-import { compileFtlMessages } from './ast-helper';
+import {simple} from 'babylon-walk';
+import {parse} from '@babel/parser';
+import {compileFtlMessages} from './ast-helper';
 
 export function parseForFtl(code, opts) {
   let ftlRules = '';
@@ -24,10 +24,10 @@ export function parseForFtl(code, opts) {
   return ftlRules;
 }
 
-export function getSourceStrings({ filePattern, shorthandName, customElements }) {
+export function getSourceStrings({filePattern, shorthandName, customElements}) {
   return glob
     .sync(filePattern)
-    .map(filename => fs.readFileSync(filename, 'utf8'))
-    .map(file => parseForFtl(file, { shorthandName, customElements }))
+    .map((filename) => fs.readFileSync(filename, 'utf8'))
+    .map((file) => parseForFtl(file, {shorthandName, customElements}))
     .reduce((collection, messages) => collection + messages, '');
 }

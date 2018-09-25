@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { readFile, writeFileSync } from 'fs';
-import { sync } from 'mkdirp';
-import { argv } from 'yargs';
+import {readFile, writeFileSync} from 'fs';
+import {sync} from 'mkdirp';
+import {argv} from 'yargs';
 import {
   clean,
   defaultOutputDir,
@@ -37,7 +37,11 @@ switch (command) {
       const shorthandName = userShorthandName || defaultShorthandName;
       const customElements = userCustomElements;
 
-      const sourceStrings = getSourceStrings({ filePattern, shorthandName, customElements });
+      const sourceStrings = getSourceStrings({
+        filePattern,
+        shorthandName,
+        customElements
+      });
       const cleanedStrings = clean(sourceStrings);
 
       sync(outputDir);

@@ -1,4 +1,4 @@
-import { parse, serialize, FluentSerializer } from 'fluent-syntax';
+import {parse, serialize, FluentSerializer} from 'fluent-syntax';
 
 export function getAttributeName(attribute = {}) {
   if (attribute.name) {
@@ -22,8 +22,10 @@ export function pullLocalizedDOMAttributes(node, l10nAttrsList) {
   if (!l10nAttrsList || l10nAttrsList.length === 0) {
     return '';
   }
-  const { attributes } = node.openingElement;
-  const l10nAttributes = attributes.filter(att => l10nAttrsList.includes(getAttributeName(att)));
+  const {attributes} = node.openingElement;
+  const l10nAttributes = attributes.filter((att) =>
+    l10nAttrsList.includes(getAttributeName(att))
+  );
   return l10nAttributes.reduce((ftlRules, attribute) => {
     const propName = getAttributeName(attribute);
     const message = getAttributeValue(attribute);
@@ -33,7 +35,11 @@ export function pullLocalizedDOMAttributes(node, l10nAttrsList) {
 }
 
 export function formatMessage({
-  messages, comments, attributes, componentType, localizationKey
+  messages,
+  comments,
+  attributes,
+  componentType,
+  localizationKey
 }) {
   const message = messages.join('\n    ');
   const comment = comments.join('\n# ');
@@ -43,8 +49,7 @@ export function formatMessage({
      - pass in a non-empty translatable message as a child or applicable attributes
      - check the component with the localization ID "${localizationKey}"
 `;
-    console.error(error);
-    return { message: error };
+    return {message: error};
   }
   return {
     message: message.trim(),
@@ -53,9 +58,7 @@ export function formatMessage({
   };
 }
 
-export function formatRule({
-  localizationKey, comment, message, attributes
-}) {
+export function formatRule({localizationKey, comment, message, attributes}) {
   const commentRule = comment ? `# ${comment}` : '';
   const attributeRule = attributes ? `    ${attributes}` : '';
   return `${commentRule}\n${localizationKey} = ${message}\n${attributeRule}`;
@@ -71,7 +74,7 @@ export function dedupe(resource) {
       list = [...obj[localizationKey], entry];
     }
 
-    return Object.assign(obj, { [localizationKey]: list });
+    return Object.assign(obj, {[localizationKey]: list});
   }, {});
 
   const l10nKeys = Object.keys(hash);
@@ -81,13 +84,14 @@ export function dedupe(resource) {
     if (list.length !== 1) {
       const values = new Set(list.map(serializer.serializeEntry));
       if (values.size > 1) {
-        console.warn(`localization key ${localizationKey} is used multiple times and has values
-${values}`);
+        const valuesString = [...values].join('\n');
+        console.warn(`localization key "${localizationKey}" is used multiple times and has values
+${valuesString}`);
       }
     }
     return list[0];
   });
-  return Object.assign(resource, { body: deduped });
+  return Object.assign(resource, {body: deduped});
 }
 
 export function clean(ftlRules) {
