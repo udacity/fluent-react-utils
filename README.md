@@ -16,7 +16,7 @@ export function NotAuthorized() {
         <h1>Oops! looks like you're not authorized to use this app.</h1>
       </Localized>
       <Localized
-        id='NotAuthorized_talkToAdmin'
+        id='NotAuthorized_warningImg'
         attrs={{alt: true}}
       >
         <img src={warningImg} alt="warning sign" />
