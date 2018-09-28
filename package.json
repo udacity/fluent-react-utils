@@ -22,7 +22,7 @@
     "lib",
     "src"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
