@@ -179,7 +179,7 @@ FTL.
 
 ### How to Use
 ```sh
-l10n extract [--pattern '...'] [--output-dir '...']
+l10n extract [--pattern '...'] [--outputDir '...']
 ```
 This will run through all files matching the file pattern, parse the code into an
 AST, locate all the `Localized` or `Loc.X` (`Loc.` is the default, but this can

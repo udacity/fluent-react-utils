@@ -81,26 +81,29 @@ export function getAttributesList(node) {
   return [];
 }
 
-export function getAllowedAttrs(elementType, customElements = {}) {
-  let elemName = elementType.split('.')[1];
-  elemName = elemName.toLowerCase();
+export function getAllowedAttrs(elementType, customElements = {}, messages) {
+  const elemName = elementType.split('.')[1];
   const elements = Object.assign({}, STANDARD_ELEMENT_TYPES, customElements);
   const elementAttrs = elements[elemName];
   if (elementAttrs) {
     const attributeNames = Object.keys(elementAttrs);
     return attributeNames.map(name => (elementAttrs[name] ? name : ''));
   }
-  console.log(`No allowed attributes configured for element type "${elemName}"`);
-  console.log('Add this element to "customElements" in the .l10nrc file.');
+
+  if (!messages || messages.length === 0) {
+    console.log(`No allowed attributes configured for element type "${elemName}"`);
+    console.log('Add this element to the object under "customElementsPath" in the .l10nrc file, or add a fallback value for string extraction.');
+  }
+
   return [];
 }
 
 export function findShorthandTranslatableMessages(node, localizationKey, customElements) {
   const componentType = _elementType(node.openingElement);
-  const l10nAttrsList = getAllowedAttrs(componentType, customElements);
-  const attributes = pullLocalizedDOMAttributes(node, l10nAttrsList);
   const comments = getComments(node);
   const messages = getMessages(node);
+  const l10nAttrsList = getAllowedAttrs(componentType, customElements, messages);
+  const attributes = pullLocalizedDOMAttributes(node, l10nAttrsList);
   return formatMessage({
     messages,
     comments,

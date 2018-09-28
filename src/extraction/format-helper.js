@@ -38,11 +38,14 @@ export function formatMessage({
   const message = messages.join('\n    ');
   const comment = comments.join('\n# ');
   if (!message && !attributes) {
-    const error = `STRING_IMPORT_ERROR:
+    let error = `STRING_IMPORT_ERROR:
      - no translated props or message provided to ${componentType}
      - pass in a non-empty translatable message as a child or applicable attributes
      - check the component with the localization ID "${localizationKey}"
 `;
+    if (!localizationKey) {
+      error = `MISSING_LOCALIZATION_KEY - this may cause errors. Check that ${componentType} has an l10n ID assigned`;
+    }
     return { message: error };
   }
   return {
