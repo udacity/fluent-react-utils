@@ -117,7 +117,7 @@ alias used in HTML-like syntax to wrap the translated message.
 
 ### Custom Loc Components
 Your project may have components that would be great to include in the `Loc`
-object, but which are not standard HTML. Say you have a styled `Button`
+object, but which are not standard HTML. Say you have a styled `MyButton`
 component, for example.
 
 ```jsx
@@ -145,7 +145,7 @@ const MyLocalizedButton = makeLocalizedElement(MyButton, {label: true})
 #### `augmentLoc(customElements)`
 In order for your custom elements to be recognized by the string extraction tool,
 they need to be prefixed by `Loc.` (or a custom name of your choice -
-see information about the `.l10nrc file).
+see information about the `.l10nrc` file).
 
 ```js
 // my-utils
@@ -187,7 +187,7 @@ l10n extract [--pattern '...'] [--outputDir '...']
 ```
 This will run through all files matching the file pattern, parse the code into an
 AST, locate all the `Localized` or `Loc.X` (`Loc.` is the default, but this can
-be customized, see .l10nrc information below) helper components and pull the id,
+be customized, see `.l10nrc` information below) helper components and pull the id,
 messages, and comments for that component into a fresh `data.ftl` file located
 in the specified output directory.
 
@@ -238,7 +238,7 @@ out as a comment to the localizer. This can be helpful for leaving tips about
 context of the message to make translation easier.
 
 ### .l10nrc File
-In order to run the extraction based on your project's custom needs, a .l10nrc 
+In order to run the extraction based on your project's custom needs, a `.l10nrc` 
 file is supported. Possible values of this file:
 
 #### `customElementsPath` 
@@ -333,4 +333,6 @@ The location you want the string extraction script to write its results.
 
 ## future work:
 - message deduplication with interface
-- compare production files, and provide no reference warnings (may indicate obsolete string)
+  - decide which message to keep, or to create a new l10nId and write back to file
+- compare string extraction output with production files
+  - provide no reference warnings (may indicate obsolete string)
