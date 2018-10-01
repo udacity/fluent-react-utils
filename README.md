@@ -1,10 +1,6 @@
 # fluent-react-utils
 String extraction and helper components for using [fluent-react](https://github.com/projectfluent/fluent.js/tree/master/fluent-react) in your projects.
 
-```
-npm i fluent-react-utils
-```
-
 ## Helper Components
 Basic fluent-react makes use of `Localized` components to wrap jsx components, like this:
 
