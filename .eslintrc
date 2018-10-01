@@ -11,8 +11,11 @@
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
+    "jsx-a11y/alt-text": "off",
     "jsx-a11y/anchor-has-content": "off",
     "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/heading-has-content": "off",
     "no-console": "off",
+    "react/jsx-filename-extension": "off"
   }
 }
