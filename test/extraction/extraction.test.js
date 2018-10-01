@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { getSourceStrings } from '../../src/extraction';
 
-const expectedOutput = `
+const expectedOutput = `# here is a comment
 NotAuthorized_oopsMessage = Oops! looks like you are not authorized to use this app.
 
 NotAuthorized_warningImg = 

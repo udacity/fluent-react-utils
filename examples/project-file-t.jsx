@@ -7,6 +7,7 @@ export function NotAuthorized() {
   return (
     <div className="container">
       <T.H1 l10nId="NotAuthorized_oopsMessage">
+        {/* here is a comment */}
         Oops! looks like you are not authorized to use this app.
       </T.H1>
       <T.Img l10nId="NotAuthorized_warningImg" alt="warning sign" src={warningImg} />

@@ -13,7 +13,10 @@ export function NotAuthorized() {
   return (
     <div className='container'>
       <Localized id='NotAuthorized_oopsMessage'>
-        <h1>Oops! looks like you're not authorized to use this app.</h1>
+        <h1>
+          {/* here is a comment for the localizer */}
+          Oops! looks like you're not authorized to use this app.
+        </h1>
       </Localized>
       <Localized
         id='NotAuthorized_warningImg'
@@ -50,6 +53,7 @@ export function NotAuthorized() {
   return (
     <div className="container">
       <Loc.H1 l10nId="NotAuthorized_oopsMessage">
+        {/* here is a comment for the localizer */}
         Oops! looks like you're not authorized to use this app.
       </Loc.H1>
       <Loc.Img
@@ -195,6 +199,7 @@ export function NotAuthorized() {
   return (
     <div className="container">
       <Loc.H1 l10nId="NotAuthorized_oopsMessage">
+        {/* here is a comment for the localizer */}
         Oops! looks like you're not authorized to use this app.
       </Loc.H1>
       <Loc.Img
@@ -221,11 +226,16 @@ export function NotAuthorized() {
 
 Running the localization script on this file would result in the `data.ftl` below:
 ```
+# here is a comment for the localizer
 NotAuthorized_oopsMessage = Oops! looks like you're not authorized to use this app.
 NotAuthorized_warningImg = 
   .alt = warning sign
 NotAuthorized_possibleActions = <link>Try again</link>, go <a>Home</a> or <button>Logout</button>
 ```
+
+*NOTE*: adding comments along with the children of a component will extract this
+out as a comment to the localizer. This can be helpful for leaving tips about
+context of the message to make translation easier.
 
 ### .l10nrc File
 In order to run the extraction based on your project's custom needs, a .l10nrc 

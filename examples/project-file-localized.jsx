@@ -8,7 +8,10 @@ export function NotAuthorized() {
   return (
     <div className="container">
       <Localized id="NotAuthorized_oopsMessage">
-        <h1>Oops! looks like you are not authorized to use this app.</h1>
+        <h1>
+          {/* here is a comment */}
+          Oops! looks like you are not authorized to use this app.
+        </h1>
       </Localized>
       <Localized id="NotAuthorized_warningImg" attrs={{ alt: true }}>
         <img src={warningImg} alt="warning sign" />

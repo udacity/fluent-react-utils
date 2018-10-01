@@ -8,6 +8,7 @@ export function NotAuthorized() {
   return (
     <div className="container">
       <Loc.H1 l10nId="NotAuthorized_oopsMessage">
+        {/* here is a comment */}
         Oops! looks like you are not authorized to use this app.
       </Loc.H1>
       <Loc.Img l10nId="NotAuthorized_warningImg" alt="warning sign" src={warningImg} />
