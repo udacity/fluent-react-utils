@@ -1,0 +1,68 @@
+{
+  "name": "fluent-react-components",
+  "version": "0.1.0",
+  "description": "Utility components for fluent-react",
+  "main": "./lib/index.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "test": "npm run lint && npm run cover",
+    "test:prod": "cross-env BABEL_ENV=production npm run test",
+    "test:only": "mocha --require babel-core/register --require babel-polyfill --recursive",
+    "cover": "istanbul cover _mocha -- --require babel-core/register --require babel-polyfill --recursive",
+    "lint": "eslint src test",
+    "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
+    "prepublish": "npm run clean && npm run test && npm run build"
+  },
+  "keywords": [
+    "udacity",
+    "fluent",
+    "localization",
+    "l10n",
+    "ftl",
+    "translate",
+    "translation",
+    "fluent-react",
+    "internationalization",
+    "i18n",
+    "components",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/udacity/fluent-react-utils"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-minify": "^0.3.0",
+    "babel-preset-react": "^6.24.1",
+    "chai": "^4.1.2",
+    "cross-env": "^5.1.3",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "fluent-react": "^0.8.1",
+    "istanbul": "^1.0.0-alpha",
+    "lerna": "^3.4.3",
+    "mocha": "^5.0.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {}
+}
