@@ -1,7 +1,7 @@
 {
-  "name": "fluent-react-utils",
+  "name": "fluent-react-extract",
   "version": "0.1.0",
-  "description": "Utilities for fluent-react",
+  "description": "String extraction CLI for fluent-react",
   "main": "./lib/index.js",
   "scripts": {
     "clean": "rimraf lib",

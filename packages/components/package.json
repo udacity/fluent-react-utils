@@ -1,7 +1,7 @@
 {
-  "name": "fluent-react-utils",
+  "name": "fluent-react-components",
   "version": "0.1.0",
-  "description": "Utilities for fluent-react",
+  "description": "Utility components for fluent-react",
   "main": "./lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
@@ -30,9 +30,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/udacity/fluent-react-utils"
-  },
-  "bin": {
-    "l10n": "lib/cli.js"
   },
   "files": [
     "lib",
@@ -68,12 +65,5 @@
     "rimraf": "^2.6.2"
   },
   "dependencies": {
-    "@babel/parser": "^7.1.0",
-    "babylon-walk": "^1.0.2",
-    "fluent-syntax": "^0.8.1",
-    "glob": "^7.1.3",
-    "jsx-ast-utils": "^2.0.1",
-    "mkdirp": "^0.5.1",
-    "yargs": "^12.0.2"
   }
 }
