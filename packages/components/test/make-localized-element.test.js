@@ -3,7 +3,7 @@ import { Localized } from 'fluent-react/compat';
 import { assert, expect } from 'chai';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { formatVars, makeLocalizedElement } from '../../src/components/make-localized-element';
+import { formatVars, makeLocalizedElement } from '../src/make-localized-element';
 
 Enzyme.configure({ adapter: new Adapter() });
 

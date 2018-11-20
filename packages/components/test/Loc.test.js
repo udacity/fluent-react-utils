@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai';
-import { MyComponent } from '../../examples/components';
-import { augmentLoc, Loc } from '../../src/components/Loc';
-import { makeLocalizedElement } from '../../lib/components/make-localized-element';
+import { MyComponent } from '../examples/components';
+import { augmentLoc, Loc } from '../src/Loc';
+import { makeLocalizedElement } from '../src/make-localized-element';
 
 describe('augmentLoc', () => {
   it('Augments the Loc object with a custom element', () => {
