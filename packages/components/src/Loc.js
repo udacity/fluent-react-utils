@@ -1,5 +1,5 @@
 import { makeLocalizedElement } from './make-localized-element';
-import { STANDARD_ELEMENT_TYPES } from '../../../shared/constants';
+import { STANDARD_ELEMENT_TYPES } from './constants';
 
 export const Loc = {
   A: makeLocalizedElement('a'),

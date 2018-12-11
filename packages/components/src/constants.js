@@ -1,19 +1,4 @@
-const AST_NODE_TYPES = {
-  JSXElement: 'JSXElement',
-  JSXText: 'JSXText',
-  JSXExpressionContainer: 'JSXExpressionContainer',
-  JSXEmptyExpression: 'JSXEmptyExpression',
-  StringLiteral: 'StringLiteral'
-};
-
-const FLUENT_ATTRS = {
-  attrs: 'attrs',
-  l10nId: 'l10nId',
-  l10nVars: 'l10nVars',
-  l10nJSX: 'l10nJSX'
-};
-
-const STANDARD_ELEMENT_TYPES = {
+export const STANDARD_ELEMENT_TYPES = {
   A: {},
   Abbr: {},
   Address: {},
@@ -89,9 +74,3 @@ const STANDARD_ELEMENT_TYPES = {
   Var: {},
   Video: {}
 };
-
-module.exports = {
-  STANDARD_ELEMENT_TYPES,
-  FLUENT_ATTRS,
-  AST_NODE_TYPES
-}
