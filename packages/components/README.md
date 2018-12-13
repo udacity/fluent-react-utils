@@ -1,5 +1,9 @@
 # Fluent React Components
 
+```
+npm install fluent-react-components
+```
+
 Basic fluent-react makes use of `Localized` components to wrap jsx components, like this:
 
 ```jsx
@@ -41,7 +45,7 @@ elements already wrapped in `Localized` with their typical `attrs` enabled in th
 `Loc` component. This turns the above into:
 
 ```jsx
-import {Loc} from 'fluent-react-utils';
+import {Loc} from 'fluent-react-components';
 
 export function NotAuthorized() {
   return (
@@ -143,7 +147,7 @@ see information about the `.l10nrc` file).
 
 ```js
 // my-utils
-import {augmentLoc} from 'fluent-react-utils';
+import {augmentLoc} from 'fluent-react-components';
 
 const customElements = {
   MyButton: MyLocalizedButton

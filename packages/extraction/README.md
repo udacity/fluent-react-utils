@@ -4,6 +4,10 @@
 Get default messages from your source code so that you don't have to switch
 context to manage translatable messages
 
+```
+npm install -D fluent-react-extract
+```
+
 Uses the [fluent-syntax](https://github.com/projectfluent/fluent.js/tree/master/fluent-syntax) serializer
 and [Babel parser](https://github.com/babel/babel/tree/master/packages/babel-parser) to
 create an AST for your React code to pull out default messages and format them in
@@ -86,7 +90,7 @@ It is recommended that this record of custom element attributes is held in a jso
 file that is pulled into any file defining the `attrs` of that element in the React
 code.
 ```js
-import {augmentLoc, makeLocalizedElement} from 'fluent-react-utils';
+import {augmentLoc, makeLocalizedElement} from 'fluent-react-components';
 import customAttrs from './custom-elements.json';
 
 const customElements = {
@@ -112,7 +116,7 @@ as this library's `Loc` utility, you can update this in the `.l10nrc` file.
 
 ```js
 // my-utils
-import {augmentLoc, makeLocalizedElement} from 'fluent-react-utils';
+import {augmentLoc, makeLocalizedElement} from 'fluent-react-components';
 import customAttrs from './custom-elements.json';
 
 const customElements = {
