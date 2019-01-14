@@ -1,5 +1,8 @@
 {
   "env": {
+    "test": {
+      "presets": ["env", "react", "es2015"]
+    },
     "development": {
       "presets": ["env", "react", "es2015"],
       "plugins": [
